@@ -1,6 +1,0 @@
-name: "Leviosa"
-author: "Pratham Vaidya"
-
-runs:
-  using: "node16"
-  main: "dist/server.js"

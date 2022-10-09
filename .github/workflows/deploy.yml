@@ -24,6 +24,18 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+        run: npm run build --if-present
+        name: SSH Remote Commands
+        uses: appleboy/ssh-action@v0.1.4
+        with:
+          key: ${{secrets.PEMKEY}}
+          host: ${{secrets.EC2IP}}
+          username: ${{secrets.USERNAME}}
+          script: |
+            cd leviosa-signalling-server
+            sudo git pull origin
+            sudo npm i
+            sudo pm2 restart all
 
       - name: Build
         run: npm run build
